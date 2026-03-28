@@ -7,7 +7,7 @@ app = Flask(__name__)
 CORS(app)
 
 # 🔐 Get API key from environment (or fallback for testing)
-GROQ_API_KEY = os.environ.get("GROQ_API_KEY") or "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"
+GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
 
 @app.route("/chat", methods=["POST"])
 def chat():
