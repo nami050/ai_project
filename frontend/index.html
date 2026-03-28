@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Explain Like I'm 5</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="chat-container">
+
+    <div class="chat-header">
+        🤖 Explain Like I'm 5
+    </div>
+
+    <div class="chat-box" id="chatBox">
+        <div class="message bot">
+            Hi 👋 What do you want me to explain?
+        </div>
+    </div>
+
+    <div class="chat-input">
+        <select>
+            <option>Kid</option>
+            <option>Teen</option>
+            <option>Adult</option>
+        </select>
+
+        <input type="text" placeholder="Type your topic here..." id="userInput">
+
+        <!-- ❌ removed onclick -->
+        <button id="sendBtn">Send</button>
+    </div>
+
+</div>
+
+<!-- External JS -->
+<script src="script.js"></script>
+</body>
+</html>
