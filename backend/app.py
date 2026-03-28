@@ -6,7 +6,7 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-# 🔐 Get API key from environment (or fallback for testing)
+# 🔐 Get API key from environment
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
 
 @app.route("/chat", methods=["POST"])
@@ -21,23 +21,18 @@ def chat():
                 "Content-Type": "application/json"
             },
             json={
-    "model": "llama-3.1-8b-instant",
-    "messages": [
-        {"role": "user", "content": user_message}
-    ]
-}
+                "model": "llama-3.1-8b-instant",
+                "messages": [
+                    {"role": "user", "content": user_message}
+                ]
+            }
         )
 
         result = response.json()
-
-        # 🔍 Debug print (very helpful)
         print("API RESPONSE:", result)
 
-        # ✅ Handle error response safely
         if "choices" not in result:
-            return jsonify({
-                "reply": "API Error: " + str(result)
-            })
+            return jsonify({"reply": "API Error: " + str(result)})
 
         reply = result["choices"][0]["message"]["content"]
 
@@ -47,10 +42,12 @@ def chat():
         print("ERROR:", e)
         return jsonify({"reply": "Error: " + str(e)})
 
-# ✅ Optional home route (to avoid 404 confusion)
+# ✅ Home route
 @app.route("/")
 def home():
     return "AI Backend Running 🚀"
 
+# 🔥 IMPORTANT FIX (Render port)
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
